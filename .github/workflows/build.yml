@@ -14,7 +14,7 @@ jobs:
       - name: Build and Upload Dockerfiles
         run: |
           for file in *.Dockerfile; do
-            IMAGE_NAME=ghcr.io/${{ github.repository }}:${file%.Dockerfile}
+            IMAGE_NAME=ghcr.io/aw2c/docker_dev-envs:${file%.Dockerfile}
             docker build -t $IMAGE_NAME -f $file .
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker push $IMAGE_NAME
